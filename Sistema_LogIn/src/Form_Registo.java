@@ -234,6 +234,9 @@ public class Form_Registo extends javax.swing.JFrame {
         }else{
             if(!validaCampoNumerico(telefone)){
                 mensagemErro ("O campo telefone tem " + "de ser númerico e ter 9 digitos");
+            }
+            if(!validaCampoNumerico(nif)){
+                mensagemErro ("O campo nif tem " + "de ser númerico e ter 9 digitos");
             
             }
             
@@ -309,15 +312,15 @@ public class Form_Registo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 
-    private boolean validaCampoNumerico(String telefone) {
+    private boolean validaCampoNumerico(String valor) {
        
-       int x, contador=0, t=telefone.length();
+       int x, contador=0, t=valor.length();
        char c;
        if (t!=9)
            return false;
        else{
            for (x=0; x<t ; x++){
-               c = telefone.charAt(x);
+               c = valor.charAt(x);
                if(isDigit(c))
                    contador++;    
            }
