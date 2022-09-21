@@ -1,4 +1,5 @@
 
+import static java.lang.Character.isDigit;
 import javax.swing.JOptionPane;
 
 /*
@@ -226,8 +227,17 @@ public class Form_Registo extends javax.swing.JFrame {
         String nif = ctxNif.getText();
         String pass = ctxPass.getText();
         String repass = ctxRepass.getText();
-        mensagemErro ("TESTE");
-        
+        if (nome.equals("") || email.equals("") || morada.equals("") ||
+                telefone.equals("") || nif.equals("") || pass.equals ("")
+                || repass.equals ("")){
+            mensagemErro("Preencha todos os campos!");
+        }else{
+            if(!validaCampoNumerico(telefone)){
+                mensagemErro ("O campo telefone tem " + "de ser númerico e ter 9 digitos");
+            
+            }
+            
+            }
         // nome >= 2 caracteres;
         //email tem de ter 1@ e 1. após o @;
         //morada tem de ter 5 ou mais caracteres;
@@ -298,4 +308,23 @@ public class Form_Registo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
+
+    private boolean validaCampoNumerico(String telefone) {
+       
+       int x, contador=0, t=telefone.length();
+       char c;
+       if (t!=9)
+           return false;
+       else{
+           for (x=0; x<t ; x++){
+               c = telefone.charAt(x);
+               if(isDigit(c))
+                   contador++;    
+           }
+           if(t!=contador)
+               return false;
+       }
+       return true;
+    }
+   
 }
