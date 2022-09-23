@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
  *
  * @author dbugalho
  */
+
 public class Form_Registo extends javax.swing.JFrame {
 
     /**
@@ -246,7 +247,8 @@ public class Form_Registo extends javax.swing.JFrame {
             if(!validaCampoMor(morada)){
                 mensagemErro ("O campo morada tem " + "de ser alfabetico e ter pelo menos 5 elementos"); 
             }
-            
+            if(!validaCampoMail(email)){
+                mensagemErro ("O campo Email tem " + "de ter  '@' e um '.' depois deste");
             }
         // nome >= 2 caracteres;
         //email tem de ter 1@ e 1. após o @;
@@ -258,7 +260,7 @@ public class Form_Registo extends javax.swing.JFrame {
         //1 ou mais algarismos e 1 ou mais maiusculas;
         // 1 ou mais carcteres especiais;
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    }
     private void ctxNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ctxNomeActionPerformed
@@ -373,5 +375,22 @@ public class Form_Registo extends javax.swing.JFrame {
                return false;
        }
        return true;
+    }   
+    
+    private boolean validaCampoMail (String valor) {
+    int a, b, t=valor.length();
+    
+    a = valor.indexOf('@');
+    b = valor.indexOf('.');
+    
+    for (int x = 0 ;  x < t ; x ++) {
+        if (a >= 1 ) {
+            if ( b >= a+2)
+                return true;
+            if ( (a + b - t) >= 1 );
+        }   
+    }  
+    return false;
     }
+  
 }
