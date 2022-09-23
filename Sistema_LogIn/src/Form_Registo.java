@@ -254,6 +254,9 @@ public class Form_Registo extends javax.swing.JFrame {
                 mensagemErro ("O campo pass tem " + "de ter pelo menos 8 componentes, sendo uma letra Maiuscula,"
                         + "minuscula, numero e caracter especial");
             }
+            if(!pass.equals (repass)){
+                mensagemErro ("A password não coincide !!");
+            }
         // nome >= 2 caracteres;
         //email tem de ter 1@ e 1. após o @;
         //morada tem de ter 5 ou mais caracteres;
