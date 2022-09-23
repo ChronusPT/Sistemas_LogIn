@@ -1,6 +1,8 @@
 
 import static java.lang.Character.isDigit;
+import static java.lang.Character.isLetter;
 import javax.swing.JOptionPane;
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -237,7 +239,12 @@ public class Form_Registo extends javax.swing.JFrame {
             }
             if(!validaCampoNumerico(nif)){
                 mensagemErro ("O campo nif tem " + "de ser númerico e ter 9 digitos");
-            
+            }
+            if(!validaCampoChar(nome)){
+                mensagemErro ("O campo nome tem " + "de ser alfabetico e ter pelo menos 2 elementos"); 
+            }
+            if(!validaCampoMor(morada)){
+                mensagemErro ("O campo morada tem " + "de ser alfabetico e ter pelo menos 5 elementos"); 
             }
             
             }
@@ -330,4 +337,41 @@ public class Form_Registo extends javax.swing.JFrame {
        return true;
     }
    
+    
+    private boolean validaCampoChar (String valor) {
+       
+       int x, contador=0, t=valor.length();
+       char a;
+       if (t < 2)
+           return false;
+       else{
+           for (x=0; x<t ; x++){
+               a = valor.charAt(x);
+               if(isLetter(a))
+                   contador++;    
+           }
+           if(t!=contador)
+               return false;
+       }
+       return true;
+    }
+    
+    
+    private boolean validaCampoMor (String valor) {
+       
+       int x, contador=0, t=valor.length();
+       char m;
+       if (t < 5)
+           return false;
+       else{
+           for (x=0; x<t ; x++){
+               m = valor.charAt(x);
+               if(isLetter(m))
+                   contador++;    
+           }
+           if(t!=contador)
+               return false;
+       }
+       return true;
+    }
 }
