@@ -250,6 +250,10 @@ public class Form_Registo extends javax.swing.JFrame {
             if(!validaCampoMail(email)){
                 mensagemErro ("O campo Email tem " + "de ter  '@' e um '.' depois deste");
             }
+            if(!validaCampoPass(pass)){
+                mensagemErro ("O campo pass tem " + "de ter pelo menos 8 componentes, sendo uma letra Maiuscula,"
+                        + "minuscula, numero e caracter especial");
+            }
         // nome >= 2 caracteres;
         //email tem de ter 1@ e 1. após o @;
         //morada tem de ter 5 ou mais caracteres;
@@ -321,7 +325,7 @@ public class Form_Registo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 
-    private boolean validaCampoNumerico(String valor) {
+    private boolean validaCampoNumerico(String valor) { //Valor Start
        
        int x, contador=0, t=valor.length();
        char c;
@@ -337,13 +341,14 @@ public class Form_Registo extends javax.swing.JFrame {
                return false;
        }
        return true;
-    }
+    } // Fim Valor
    
     
-    private boolean validaCampoChar (String valor) {
+    private boolean validaCampoChar (String valor) { // Nome Start
        
        int x, contador=0, t=valor.length();
        char a;
+       
        if (t < 2)
            return false;
        else{
@@ -356,10 +361,10 @@ public class Form_Registo extends javax.swing.JFrame {
                return false;
        }
        return true;
-    }
+    } // Fim Nome
     
     
-    private boolean validaCampoMor (String valor) {
+    private boolean validaCampoMor (String valor) { // Morada start 
        
        int x, contador=0, t=valor.length();
        char m;
@@ -375,9 +380,9 @@ public class Form_Registo extends javax.swing.JFrame {
                return false;
        }
        return true;
-    }   
+    }   // Fim Morada
     
-    private boolean validaCampoMail (String valor) {
+    private boolean validaCampoMail (String valor) { // Mail start
     int a, b, t=valor.length();
     
     a = valor.indexOf('@');
@@ -391,6 +396,50 @@ public class Form_Registo extends javax.swing.JFrame {
         }   
     }  
     return false;
-    }
+    } // Fim mail
   
-}
+ private static boolean validaCampoPass (String valor) { // Pass Start
+     int x = 0, t = valor.length();
+     
+    boolean MaxFlag = false;
+    boolean MinFlag = false;
+    boolean NumFlag = false;
+    boolean SpcFlag = false;
+    
+     if (t < 8)
+            return false;
+     
+     for ( x = 0; x < t; x++ ){
+         
+         char ch = valor.charAt(x);
+         
+         if (Character.isDigit(ch)){
+             NumFlag = true;
+         }
+         else if (Character.isUpperCase(ch)){
+             MaxFlag = true;
+         }
+         else if (Character.isLowerCase(ch)){
+             MinFlag = true;
+         }
+         else if (((valor.contains("@") || valor.contains("#")
+              || valor.contains("!") || valor.contains("~")
+              || valor.contains("$") || valor.contains("%")
+              || valor.contains("^") || valor.contains("&")
+              || valor.contains("*") || valor.contains("(")
+              || valor.contains(")") || valor.contains("-")
+              || valor.contains("+") || valor.contains("/")
+              || valor.contains(":") || valor.contains(".")
+              || valor.contains(", ") || valor.contains("<")
+              || valor.contains(">") || valor.contains("?")
+              || valor .contains("|")))) {
+             SpcFlag = true;
+         }
+    if (NumFlag && MaxFlag && MinFlag && SpcFlag)
+        return true;
+     }
+     return false;
+}   // Fim Pass
+    
+    
+} // FIM MAIN
