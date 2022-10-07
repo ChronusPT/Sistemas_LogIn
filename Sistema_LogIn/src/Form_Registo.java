@@ -1,5 +1,7 @@
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
@@ -278,15 +280,34 @@ public class Form_Registo extends javax.swing.JFrame {
             
             
         File ficheiro = new File(login+".txt");
-        if(!ficheiro.exists()){
-            try {
-                ficheiro.createNewFile();
-            } catch (IOException ex) {
-                ex.printStackTrace();
+        try { 
+            if(!ficheiro.exists()){         
+                ficheiro.createNewFile();  
+                }else{
+                    mensagemErro ("O LogIn já existe ou não é valido !");
+                    }
+                FileWriter fw = new FileWriter(ficheiro, true); 
+                BufferedWriter bw = new BufferedWriter (fw); 
+                System.out.println("Insira o conteudo"); 
+                bw.write(nome); 
+                bw.newLine(); 
+                bw.write(email);
+                bw.newLine(); 
+                bw.write(morada); 
+                bw.newLine(); 
+                bw.write(telefone); 
+                bw.newLine(); 
+                bw.write(nif); 
+                bw.newLine(); 
+                bw.write(pass); 
+                bw.newLine(); 
+                bw.write(repass); 
+                bw.newLine(); 
+                bw.close(); 
+                fw.close(); 
+            } catch (IOException ex){ 
+                ex.printStackTrace(); 
             }
-        }else{
-            mensagemErro ("O User não está disponivel !!");
-        }
        
         // nome >= 2 caracteres;
         //email tem de ter 1@ e 1. após o @;
