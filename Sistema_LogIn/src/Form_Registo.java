@@ -1,4 +1,6 @@
 
+import java.io.File;
+import java.io.IOException;
 import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
 import javax.swing.JOptionPane;
@@ -244,9 +246,11 @@ public class Form_Registo extends javax.swing.JFrame {
         String nif = ctxNif.getText();
         String pass = ctxPass.getText();
         String repass = ctxRepass.getText();
+        String login = ctxLogIn.getText();
+        
         if (nome.equals("") || email.equals("") || morada.equals("") ||
                 telefone.equals("") || nif.equals("") || pass.equals ("")
-                || repass.equals ("")){
+                || repass.equals ("") || login.equals ("")){
             mensagemErro("Preencha todos os campos!");
         }else{
             if(!validaCampoNumerico(telefone)){
@@ -270,7 +274,20 @@ public class Form_Registo extends javax.swing.JFrame {
             }
             if(!pass.equals (repass)){
                 mensagemErro ("A password não coincide !!");
+            }  
+            
+            
+        File ficheiro = new File(login+".txt");
+        if(!ficheiro.exists()){
+            try {
+                ficheiro.createNewFile();
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
+        }else{
+            mensagemErro ("O User não está disponivel !!");
+        }
+       
         // nome >= 2 caracteres;
         //email tem de ter 1@ e 1. após o @;
         //morada tem de ter 5 ou mais caracteres;
@@ -459,6 +476,6 @@ public class Form_Registo extends javax.swing.JFrame {
      }
      return false;
 }   // Fim Pass
-    
-    
+      
+        
 } // FIM MAIN
