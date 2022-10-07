@@ -130,7 +130,12 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_ctxLoginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        /* Validação através da recolha e comparação da "password" e "login";
+        1º Verificar se existe o ficheiro "logIn.txt";
+        2º Veruficar se a "password" corresponde á "pass" no ficheiro
+        se sim, segue para o JFrameForm "MenuOpcoes";
+        
+        */
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ctxPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxPasswordActionPerformed
