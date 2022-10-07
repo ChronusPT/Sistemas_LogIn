@@ -278,7 +278,6 @@ public class Form_Registo extends javax.swing.JFrame {
                 mensagemErro ("A password não coincide !!");
             }  
             
-            
         File ficheiro = new File(login+".txt");
         try { 
             if(!ficheiro.exists()){         

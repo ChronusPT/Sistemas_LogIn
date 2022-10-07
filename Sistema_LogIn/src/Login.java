@@ -1,3 +1,11 @@
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -129,7 +137,45 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ctxLoginActionPerformed
 
+    private void mensagemErro (String erro) {
+        JOptionPane.showMessageDialog(null, erro, "Erro validação", JOptionPane.ERROR_MESSAGE);
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    
+    String login = ctxLogin.getText();
+    String pass = ctxPassword.getText();
+    
+    
+    File ficheiro = new File(login+".txt");
+        if(!ficheiro.exists()){
+            mensagemErro ("O Login não é valido !");   
+            }else{
+                    try{
+                        int count = 0;
+                FileReader fr = new FileReader (ficheiro);
+                BufferedReader br = new BufferedReader (fr);
+                while (br.ready()){
+                    String linha = br.readLine (); count ++;
+                    if (count == 6){
+                        if (pass.equals(linha)){
+                            MenuOpcoes mo = new MenuOpcoes ();
+                        this.setVisible(false);
+                        mo.setVisible(true);    
+                        }else{
+                            mensagemErro ("Dados de login invalidos !"); 
+                        }
+                    }
+                }
+                br.close();
+                br.close();
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            } catch (IOException ioe) {
+                
+            }
+                    }
+        
         /* Validação através da recolha e comparação da "password" e "login";
         1º Verificar se existe o ficheiro "logIn.txt";
         2º Veruficar se a "password" corresponde á "pass" no ficheiro
