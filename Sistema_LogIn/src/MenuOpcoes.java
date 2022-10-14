@@ -132,15 +132,19 @@ public class MenuOpcoes extends javax.swing.JFrame {
         File ficheiro = new File ("C:\\Users\\DBugalho\\Desktop\\Sistemas_LogIn\\Sistemas_LogIn\\Sistema_LogIn");
         File [] lista = ficheiro.listFiles();
         System.out.println(">>> Lista de Ficheiros <<<");
-        for (int x=0; x<lista.length; x++){
+        for (int x=0; x<lista.length; x++){ 
+            String valor = " ";
+            valor = (lista[x].toString());
+            if (valor.endsWith (".txt")){
             System.out.println(lista[x].getName());
             }
+        }
+   
     }//GEN-LAST:event_MostrarActionPerformed
 
     private void VisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisualizarActionPerformed
         
         File ficheiro = new File (Login.login+".txt");
-        File [] lista = ficheiro.listFiles();
         
         if(!ficheiro.exists()){
             System.out.println("Os dados não existem !");
