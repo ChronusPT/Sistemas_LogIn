@@ -1,8 +1,10 @@
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /*
@@ -36,10 +38,10 @@ public class MenuOpcoes extends javax.swing.JFrame {
     private void initComponents() {
 
         ctxSair = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Mostrar = new javax.swing.JButton();
+        Apagar = new javax.swing.JButton();
         Visualizar = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        Editar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,14 +53,19 @@ public class MenuOpcoes extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Mostrar Utilizadores Registados");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Mostrar.setText("Mostrar Utilizadores Registados");
+        Mostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                MostrarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Eliminar Utilizador");
+        Apagar.setText("Eliminar Utilizador");
+        Apagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ApagarActionPerformed(evt);
+            }
+        });
 
         Visualizar.setText("Visualizar Dados do Utilizador");
         Visualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +74,12 @@ public class MenuOpcoes extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Editar Dados do Utilizador");
+        Editar.setText("Editar Dados do Utilizador");
+        Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,26 +94,26 @@ public class MenuOpcoes extends javax.swing.JFrame {
                         .addGap(105, 105, 105)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Visualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(Mostrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 97, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(139, 139, 139)
-                .addComponent(jButton2)
+                .addComponent(Apagar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addComponent(jButton1)
+                .addComponent(Mostrar)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Apagar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Visualizar)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(Editar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(ctxSair, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -116,14 +128,20 @@ public class MenuOpcoes extends javax.swing.JFrame {
         log.setVisible(true);
     }//GEN-LAST:event_ctxSairActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
+        File ficheiro = new File ("C:\\Users\\DBugalho\\Desktop\\Sistemas_LogIn\\Sistemas_LogIn\\Sistema_LogIn");
+        File [] lista = ficheiro.listFiles();
+        System.out.println(">>> Lista de Ficheiros <<<");
+        for (int x=0; x<lista.length; x++){
+            System.out.println(lista[x].getName());
+            }
+    }//GEN-LAST:event_MostrarActionPerformed
 
     private void VisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisualizarActionPerformed
         
-        
         File ficheiro = new File (Login.login+".txt");
+        File [] lista = ficheiro.listFiles();
+        
         if(!ficheiro.exists()){
             System.out.println("Os dados não existem !");
         }else{
@@ -144,6 +162,25 @@ public class MenuOpcoes extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_VisualizarActionPerformed
+
+    private void ApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApagarActionPerformed
+        
+        File ficheiro = new File (Login.login+".txt"); 
+            if(ficheiro.exists()){         
+               ficheiro.delete();
+                System.out.println ("O utilizador foi apagado com sucesso!");
+           } 
+            
+        Login log = new Login ();
+        this.dispose();
+        log.setVisible(true);
+         
+    }//GEN-LAST:event_ApagarActionPerformed
+
+    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
+        
+     
+    }//GEN-LAST:event_EditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,10 +218,10 @@ public class MenuOpcoes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Apagar;
+    private javax.swing.JButton Editar;
+    private javax.swing.JButton Mostrar;
     private javax.swing.JButton Visualizar;
     private javax.swing.JButton ctxSair;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     // End of variables declaration//GEN-END:variables
 }
