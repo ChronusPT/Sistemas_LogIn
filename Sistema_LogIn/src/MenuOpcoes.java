@@ -1,3 +1,10 @@
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -12,8 +19,11 @@ public class MenuOpcoes extends javax.swing.JFrame {
     /**
      * Creates new form MenuOpcoes
      */
+    Login log; 
     public MenuOpcoes() {
         initComponents();
+        if (log == null)
+            log = new Login ();
     }
 
     /**
@@ -28,7 +38,7 @@ public class MenuOpcoes extends javax.swing.JFrame {
         ctxSair = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        Visualizar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,10 +60,10 @@ public class MenuOpcoes extends javax.swing.JFrame {
 
         jButton2.setText("Eliminar Utilizador");
 
-        jButton3.setText("Visualizar Dados do Utilizador");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Visualizar.setText("Visualizar Dados do Utilizador");
+        Visualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                VisualizarActionPerformed(evt);
             }
         });
 
@@ -71,7 +81,7 @@ public class MenuOpcoes extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Visualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 97, Short.MAX_VALUE)))
@@ -89,7 +99,7 @@ public class MenuOpcoes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(Visualizar)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
@@ -110,9 +120,30 @@ public class MenuOpcoes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void VisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisualizarActionPerformed
+        
+        
+        File ficheiro = new File (Login.login+".txt");
+        if(!ficheiro.exists()){
+            System.out.println("Os dados não existem !");
+        }else{
+            
+            try{
+                FileReader fr = new FileReader (ficheiro);
+                BufferedReader br = new BufferedReader (fr);
+                while (br.ready()){
+                    String linha = br.readLine ();
+                    System.out.println (linha);
+                }
+                br.close();
+                br.close();
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            } catch (IOException ioe) {
+                
+            }
+        }
+    }//GEN-LAST:event_VisualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,10 +181,10 @@ public class MenuOpcoes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Visualizar;
     private javax.swing.JButton ctxSair;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     // End of variables declaration//GEN-END:variables
 }
