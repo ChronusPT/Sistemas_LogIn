@@ -182,7 +182,9 @@ public class MenuOpcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_ApagarActionPerformed
 
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
-        
+        Editar_Registo fr = new Editar_Registo ();
+        this.setVisible(false);
+        fr.setVisible(true);
      
     }//GEN-LAST:event_EditarActionPerformed
 
