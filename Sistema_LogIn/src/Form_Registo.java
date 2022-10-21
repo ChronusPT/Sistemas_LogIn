@@ -5,6 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -298,16 +301,21 @@ public class Form_Registo extends javax.swing.JFrame {
             } catch (IOException ex){ 
                 ex.printStackTrace(); 
             }
-       
-        // nome >= 2 caracteres;
-        //email tem de ter 1@ e 1. após o @;
-        //morada tem de ter 5 ou mais caracteres;
-        //telefone tem de ter 9 digitos;
-        //Nif tem de ter 9 digitos;
-        //pass e repass tem de ser iguais;
-        //pass 8 ou mais caracteres, 1 ou + minusculas;
-        //1 ou mais algarismos e 1 ou mais maiusculas;
-        // 1 ou mais carcteres especiais;
+            try {
+                LigaBD.registaUtilizador(nome, email, morada, Integer.parseInt(telefone), Integer.parseInt(nif) , login, pass);
+              
+                // nome >= 2 caracteres;
+                //email tem de ter 1@ e 1. após o @;
+                //morada tem de ter 5 ou mais caracteres;
+                //telefone tem de ter 9 digitos;
+                //Nif tem de ter 9 digitos;
+                //pass e repass tem de ser iguais;
+                //pass 8 ou mais caracteres, 1 ou + minusculas;
+                //1 ou mais algarismos e 1 ou mais maiusculas;
+                // 1 ou mais carcteres especiais;
+            } catch (SQLException ex) {
+                Logger.getLogger(Form_Registo.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_jButton1ActionPerformed
     }
     private void ctxNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxNomeActionPerformed

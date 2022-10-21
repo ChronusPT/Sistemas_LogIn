@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -182,10 +184,15 @@ public class MenuOpcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_ApagarActionPerformed
 
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
-        Editar_Registo fr = new Editar_Registo ();
-        this.setVisible(false);
-        fr.setVisible(true);
-     
+       Editar_Registo fr = null;
+        try {
+            fr = new Editar_Registo ();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuOpcoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       this.setVisible(false);
+       fr.setVisible(true);
+       
     }//GEN-LAST:event_EditarActionPerformed
 
     /**
