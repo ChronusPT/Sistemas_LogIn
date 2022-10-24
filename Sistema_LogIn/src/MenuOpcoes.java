@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -188,6 +189,8 @@ public class MenuOpcoes extends javax.swing.JFrame {
         try {
             fr = new Editar_Registo ();
         } catch (IOException ex) {
+            Logger.getLogger(MenuOpcoes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(MenuOpcoes.class.getName()).log(Level.SEVERE, null, ex);
         }
        this.setVisible(false);
