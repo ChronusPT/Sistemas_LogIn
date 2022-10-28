@@ -132,6 +132,7 @@ public class MenuOpcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_ctxSairActionPerformed
 
     private void MostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarActionPerformed
+        /*
         File ficheiro = new File ("C:\\Users\\DBugalho\\Desktop\\Sistemas_LogIn\\Sistemas_LogIn\\Sistema_LogIn");
         File [] lista = ficheiro.listFiles();
         System.out.println(">>> Lista de Ficheiros <<<");
@@ -141,7 +142,11 @@ public class MenuOpcoes extends javax.swing.JFrame {
             if (valor.endsWith (".txt")){
             System.out.println(lista[x].getName());
             }
-        }
+        }*/
+        
+        Tabela tb = new Tabela ();
+        this.setVisible(false);
+        tb.setVisible(true);
    
     }//GEN-LAST:event_MostrarActionPerformed
 
