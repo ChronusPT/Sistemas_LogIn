@@ -283,9 +283,18 @@ public class Editar_Registo extends javax.swing.JFrame {
                 fw.close(); 
             } catch (IOException ex){
                 ex.printStackTrace();
-            }
+            }            
+            
+            
+            
+       
+                LigaBD.atualizaUtilizador(nome, email, morada, Integer.parseInt(telefone), Integer.parseInt(nif), pass);
+         
+            
+                
+            
     }//GEN-LAST:event_jButton1ActionPerformed
-    }
+    }  
     private void ctxNomeEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxNomeEActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ctxNomeEActionPerformed
@@ -518,12 +527,10 @@ public class Editar_Registo extends javax.swing.JFrame {
            ctxPassE.setText(rs.getString(8));
            ctxRepassE.setText(rs.getString(8));
            
+     
         }
-        
-    }
     
-    //
-
+    }
 
 }
 
