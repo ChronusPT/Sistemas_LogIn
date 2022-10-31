@@ -1,10 +1,13 @@
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -82,6 +85,25 @@ public class LigaBD {
        
        
     }
+
+    public static void remove(int p) {
+        
+        try {
+            PreparedStatement ps=null;
+            Connection conexao = LigaBD.ligacao();
+            ps = conexao.prepareStatement("DELETE FROM utilizador WHERE login ='" +Login.login+"'");
+            ps.executeUpdate();
+            
+           
+
+
+            //pstmnt.executeBatch();
+            System.out.println("Removed User :" + Login.login);
+        } catch (SQLException e) {System.out.println("Error: " + e.getMessage()); }
+    }
+    
+    
+       
        
     }
         
